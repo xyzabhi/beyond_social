@@ -21,6 +21,8 @@ const CustomButton = ({ text, onPress, type = 'primary', style }: CustomButtonPr
     <TouchableOpacity
       style={[styles.button, { backgroundColor }, style]}
       onPress={onPress}
+      activeOpacity={0.8}
+      
     >
       <Text style={[styles.buttonText, { color: type === 'primary' ? '#fff' : Colors.primary }]}>{text}</Text>
     </TouchableOpacity>

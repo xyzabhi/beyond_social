@@ -1,60 +1,46 @@
-import { StyleProp, StyleSheet, Text, TouchableOpacity, ViewStyle } from "react-native";
-import { Theme } from "../../../constants/Theme";
+import React from 'react';
+import { StyleProp, StyleSheet, Text, TouchableOpacity, ViewStyle } from 'react-native';
+import { Colors } from '../../../constants/Colors';
+
+const BUTTON_COLORS = {
+  primary: Colors.primary,
+  secondary: Colors.secondary,
+};
 
 interface CustomButtonProps {
-  title: string;
+  text: string;
   onPress: () => void;
+  type: keyof typeof BUTTON_COLORS;
   style?: StyleProp<ViewStyle>;
-  variant?: 'primary' | 'secondary';
-  disabled?: boolean;
 }
 
-function CustomButton({ title, onPress, style, variant = 'primary', disabled = false }: CustomButtonProps) {
+const CustomButton = ({ text, onPress, type = 'primary', style }: CustomButtonProps) => {
+  const backgroundColor = BUTTON_COLORS[type] || BUTTON_COLORS.primary;
+
   return (
     <TouchableOpacity
+      style={[styles.button, { backgroundColor }, style]}
       onPress={onPress}
-      style={[styles.base, variant === 'primary' ? styles.primary : styles.secondary, disabled && styles.disabled, style]}
-      activeOpacity={0.8}
-      disabled={disabled}
     >
-      <Text style={[styles.title, variant === 'primary' ? styles.primaryText : styles.secondaryText, disabled && styles.disabledText]}>{title}</Text>
+      <Text style={styles.buttonText}>{text}</Text>
     </TouchableOpacity>
-  );
-}
+  )
+};
+
+export default CustomButton;
 
 const styles = StyleSheet.create({
-  base: {
+  button: {
     width: '100%',
-    paddingVertical: 16,
-    borderRadius: 32,
+    padding: 12,
+    borderRadius: 12,
     alignItems: 'center',
     justifyContent: 'center',
     marginVertical: 8,
   },
-  primary: {
-    backgroundColor: Theme.Colors.primary,
-  },
-  secondary: {
-    backgroundColor: 'transparent',
-    borderWidth: 2,
-    borderColor: Theme.Colors.primary,
-  },
-  disabled: {
-    opacity: 0.5,
-  },
-  title: {
-    fontSize: 18,
-    fontWeight: '700',
-  },
-  primaryText: {
-    color: Theme.Colors.background,
-  },
-  secondaryText: {
-    color: Theme.Colors.primary,
-  },
-  disabledText: {
-    color: Theme.Colors.textSecondary,
+  buttonText: {
+    color: '#fff',
+    fontSize: 16,
+    fontWeight: '600',
   },
 });
-
-export default CustomButton;    

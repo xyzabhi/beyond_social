@@ -4,7 +4,7 @@ import { Colors } from '../../../constants/Colors';
 
 const BUTTON_COLORS = {
   primary: Colors.primary,
-  secondary: Colors.secondary,
+  secondary: Colors.background,
 };
 
 interface CustomButtonProps {
@@ -22,7 +22,7 @@ const CustomButton = ({ text, onPress, type = 'primary', style }: CustomButtonPr
       style={[styles.button, { backgroundColor }, style]}
       onPress={onPress}
     >
-      <Text style={styles.buttonText}>{text}</Text>
+      <Text style={[styles.buttonText, { color: type === 'primary' ? '#fff' : '#000' }]}>{text}</Text>
     </TouchableOpacity>
   )
 };
@@ -33,13 +33,12 @@ const styles = StyleSheet.create({
   button: {
     width: '100%',
     padding: 12,
-    borderRadius: 12,
+    borderRadius: 50,
     alignItems: 'center',
     justifyContent: 'center',
     marginVertical: 8,
   },
   buttonText: {
-    color: '#fff',
     fontSize: 16,
     fontWeight: '600',
   },

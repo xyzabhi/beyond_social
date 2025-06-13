@@ -2,12 +2,11 @@ import AntDesign from '@expo/vector-icons/AntDesign';
 import FontAwesome from '@expo/vector-icons/FontAwesome';
 import {
   Image,
-  Platform,
   StyleSheet,
   Text,
   TextInput,
   TouchableOpacity,
-  View,
+  View
 } from "react-native";
 import CustomButton from "../../../components/custom/buttons/CustomButton";
 import { Theme } from "../../../constants/Theme";
@@ -20,46 +19,57 @@ function SignInScreen() {
         source={require("../../../assets/images/onboardingbg.png")}
         style={styles.backgroundImage}
       />
-      <View style={styles.content}>
-        <View style={styles.titleContainer}>
-          <Text style={styles.title}>Welcome</Text>
-          <Text style={styles.subtitle}>Let's get started</Text>
-        </View>
 
-        <View style={styles.phoneLoginContainer}>
-          <TextInput
-            style={styles.phoneInput}
-            placeholder="Enter your phone number"
-            keyboardType="numeric"
-            placeholderTextColor="#ccc"
-          />
-          <TouchableOpacity style={styles.phoneLoginButton}>
-            <Text style={styles.phoneLoginButtonText}>Continue</Text>
-          </TouchableOpacity>
-        </View>
+      <View style={styles.contentWrapper}>
+        <View style={styles.content}>
+          <View style={styles.titleContainer}>
+            <Text style={styles.title}>Welcome</Text>
+            <Text style={styles.subtitle}>Let's get started</Text>
+          </View>
 
-        <View style={styles.socialLoginContainer}>
-          <TouchableOpacity style={styles.socialIconButton}>
-            <FontAwesome name="facebook" size={24} color={"#3b5998"} />
-          </TouchableOpacity>
-          <TouchableOpacity style={styles.socialIconButton}>
-            <AntDesign name="google" size={24} color={"#4285F4"} />
-          </TouchableOpacity>
-          <TouchableOpacity style={styles.socialIconButton}>
-            <FontAwesome name="apple" size={24} color={"#000"} />
-          </TouchableOpacity>
-        </View>
+          <View style={styles.phoneLoginContainer}>
+            <TextInput
+              style={styles.phoneInput}
+              placeholder="Phone Number"
+              keyboardType="numeric"
+              placeholderTextColor="#ccc"
+            />
+            <CustomButton
+              text="Continue"
+              onPress={() => {}}
+              type="primary"
+              style={styles.continueButton}
+            />
+          </View>
 
-        <View style={styles.signupContainer}>
-          <Text style={styles.signupText}>Don't have an account?</Text>
-          <CustomButton text="Sign up" onPress={() => {}} type="primary" style={styles.signupButton} />
-        </View>
+          <View style={styles.socialLoginContainer}>
+            <TouchableOpacity onPress={() => {}} activeOpacity={0.8}  style={styles.socialIconButton}>
+              <AntDesign name="google" size={24} color="#DB4437" />
+            </TouchableOpacity>
+            <TouchableOpacity onPress={() => {}} activeOpacity={0.8} style={styles.socialIconButton}>
+              <FontAwesome name="apple" size={24} color="#000" />
+            </TouchableOpacity>
+            <TouchableOpacity onPress={() => {}} activeOpacity={0.8} style={styles.socialIconButton}>
+              <FontAwesome name="facebook" size={24} color="#3b5998" />
+            </TouchableOpacity>
+          </View>
 
-        <View style={styles.termsContainer}>
-          <Text style={styles.termsText}>By continuing, you agree to our </Text>
-          <Text style={styles.termsTextLink}>Terms of Service </Text>
-          <Text style={styles.termsText}>and </Text>
-          <Text style={styles.termsTextLink}>Privacy Policy</Text>
+          <View style={styles.signupContainer}>
+            <Text style={styles.signupText}>Don't have an account?</Text>
+            <CustomButton
+              text="Sign up"
+              onPress={() => {}}
+              type="secondary"
+              style={styles.signupButton}
+            />
+          </View>
+
+          <View style={styles.termsContainer}>
+            <Text style={styles.termsText}>By continuing, you agree to our </Text>
+            <Text style={styles.termsTextLink}>Terms of Service </Text>
+            <Text style={styles.termsText}>and </Text>
+            <Text style={styles.termsTextLink}>Privacy Policy</Text>
+          </View>
         </View>
       </View>
     </View>
@@ -81,17 +91,17 @@ const styles = StyleSheet.create({
     left: 0,
     zIndex: 0,
   },
-  content: {
-    zIndex: 1,
-    paddingHorizontal: Theme.Spacing.screen,
-    paddingVertical: scale(32),
-    width: "100%",
+  contentWrapper: {
     flex: 1,
-    justifyContent: "center",
+    justifyContent: "flex-end",
+  },
+  content: {
+    paddingHorizontal: Theme.Spacing.screen,
+    paddingBottom: scale(32),
   },
   titleContainer: {
     marginBottom: scale(16),
-    alignItems: "center",
+  
   },
   title: {
     fontSize: Theme.Typography.h1.fontSize,
@@ -105,70 +115,49 @@ const styles = StyleSheet.create({
     marginTop: scale(4),
   },
   phoneLoginContainer: {
-    flexDirection: "row",
     width: "100%",
-    marginTop: scale(32),
-    gap: scale(8),
+    marginTop: scale(24),
+    gap: scale(12),
   },
   phoneInput: {
-    flex: 1,
-    height: scale(48),
+    height: scale(42),
     borderWidth: 1,
     borderColor: "#FFFFFF",
-    borderRadius: scale(8),
+    borderRadius: scale(12),
     paddingHorizontal: scale(12),
-    backgroundColor: "#FFFFFF20",
-    color: "#FFFFFF",
+    backgroundColor: "#FFFFFF",
+    color: "#000",
+    fontSize: 18,
+    letterSpacing: 1,
   },
-  phoneLoginButton: {
-    backgroundColor: Theme.Colors.primary,
-    borderRadius: scale(8),
-    justifyContent: "center",
-    paddingHorizontal: scale(16),
-    paddingVertical: scale(12),
-  },
-  phoneLoginButtonText: {
-    color: "#FFFFFF",
-    fontSize: Theme.Typography.h2.fontSize,
-    fontWeight: "700",
+  continueButton: {
+    width: "100%",
   },
   socialLoginContainer: {
     flexDirection: "row",
     justifyContent: "center",
-    marginTop: scale(28),
-    paddingHorizontal: scale(16),
     gap: scale(24),
   },
   socialIconButton: {
-    width: SOCIAL_BUTTON_SIZE,
-    height: SOCIAL_BUTTON_SIZE,
-    borderRadius: SOCIAL_BUTTON_SIZE / 2,
+    width: scale(42),
+    height: scale(42),
     backgroundColor: "#FFFFFF",
     alignItems: "center",
     justifyContent: "center",
-    ...Platform.select({
-      ios: {
-        shadowColor: "#000",
-        shadowOffset: { width: 0, height: 2 },
-        shadowOpacity: 0.15,
-        shadowRadius: 6,
-      },
-      android: {
-        elevation: 4,
-      },
-    }),
-
+    borderRadius: 50,
+    borderWidth: 1,
+    borderColor: "#FFFFFF",
   },
   signupContainer: {
     marginTop: scale(24),
     width: "100%",
     gap: scale(12),
+    alignItems: "center",
   },
   signupText: {
     color: "#FFFFFF",
     fontSize: 16,
     fontWeight: "500",
-    textAlign: "center",
   },
   signupButton: {
     width: "100%",
@@ -177,7 +166,7 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     flexWrap: "wrap",
     justifyContent: "center",
-    marginTop: scale(20),
+    marginTop: scale(16),
     paddingHorizontal: scale(16),
   },
   termsText: {

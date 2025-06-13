@@ -1,14 +1,8 @@
-import {
-  DarkTheme,
-  DefaultTheme,
-  ThemeProvider,
-} from "@react-navigation/native";
-import { useFonts } from "expo-font";
-import { Stack } from "expo-router";
-import { StatusBar } from "expo-status-bar";
-import "react-native-reanimated";
-import { SafeAreaView, Text, StyleSheet } from "react-native";
 import { useColorScheme } from "@/hooks/useColorScheme";
+import { useFonts } from "expo-font";
+import { StyleSheet } from "react-native";
+import "react-native-reanimated";
+import SignInScreen from "./auth/signin/SignInScreen";
 
 export default function RootLayout() {
   const colorScheme = useColorScheme();
@@ -21,9 +15,7 @@ export default function RootLayout() {
   }
 
   return (
-    <SafeAreaView>
-      <Text style={styles.headerText}>Beyond Social</Text>
-    </SafeAreaView>
+    <SignInScreen />
   );
 }
 

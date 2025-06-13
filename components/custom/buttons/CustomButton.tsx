@@ -22,7 +22,7 @@ const CustomButton = ({ text, onPress, type = 'primary', style }: CustomButtonPr
       style={[styles.button, { backgroundColor }, style]}
       onPress={onPress}
     >
-      <Text style={[styles.buttonText, { color: type === 'primary' ? '#fff' : '#000' }]}>{text}</Text>
+      <Text style={[styles.buttonText, { color: type === 'primary' ? '#fff' : Colors.primary }]}>{text}</Text>
     </TouchableOpacity>
   )
 };

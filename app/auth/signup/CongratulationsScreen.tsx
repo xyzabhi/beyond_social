@@ -7,4 +7,4 @@ export default function CongratulationsScreen() {
       <Text>Congratulations! Signup Complete.</Text>
     </View>
   );
-} 
+}

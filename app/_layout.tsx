@@ -3,6 +3,7 @@ import { useFonts } from "expo-font";
 import { StyleSheet } from "react-native";
 import "react-native-reanimated";
 import SignInScreen from "./auth/signin/SignInScreen";
+import { Stack } from "expo-router";
 
 export default function RootLayout() {
   const colorScheme = useColorScheme();
@@ -15,7 +16,7 @@ export default function RootLayout() {
   }
 
   return (
-    <SignInScreen />
+    <Stack />
   );
 }
 

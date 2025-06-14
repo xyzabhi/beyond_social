@@ -1,5 +1,6 @@
 import AntDesign from '@expo/vector-icons/AntDesign';
 import FontAwesome from '@expo/vector-icons/FontAwesome';
+import { useRouter } from 'expo-router';
 import {
   Image,
   StyleSheet,
@@ -13,6 +14,7 @@ import { Theme } from "../../../constants/Theme";
 import { scale } from "../../../utils/responsive";
 
 function SignInScreen() {
+  const router = useRouter();
   return (
     <View style={styles.container}>
       <Image
@@ -58,7 +60,7 @@ function SignInScreen() {
             <Text style={styles.signupText}>Don't have an account?</Text>
             <CustomButton
               text="Sign up"
-              onPress={() => {}}
+            onPress={() => router.push('/main/HomeScreen')}
               type="secondary"
               style={styles.signupButton}
             />

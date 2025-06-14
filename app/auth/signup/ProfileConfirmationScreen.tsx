@@ -1,10 +1,10 @@
 import React from 'react';
 import { Text, View } from 'react-native';
 
-export default function Step2VibeSelectionScreen() {
+export default function ProfileConfirmationScreen() {
   return (
     <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-      <Text>Step 2: Vibe Selection</Text>
+      <Text>Step 3: Profile Confirmation</Text>
     </View>
   );
-} 
+}
